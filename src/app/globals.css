@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --success: #2ecc71;
+  --primary: #0f70b1;
 }
 
 @theme inline {
@@ -23,4 +25,16 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  background: var(--primary);
+  width: 110px;
+  height: 40px;
+  border-radius: 10px;
+  color: #ffffff;
+  
+}
+button:hover {
+  background: #135988;
 }
