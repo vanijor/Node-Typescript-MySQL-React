@@ -28,6 +28,11 @@ Acessar o navegador a URL
 http://localhost:3000
 ```
 
+Para estilizar com heroicons tailwind
+```
+npm install @heroicons/react
+```
+
 ## Pacote para conectar a aplicação à API
 ```
 npm install axios
