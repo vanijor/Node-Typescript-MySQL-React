@@ -13,6 +13,7 @@ import Link from "next/link";
 //Importar o componente Menu
 import Menu from "@/components/Menu";
 import DeleteButton from "@/components/DeleteButton";
+import AlertMessage from "@/components/AlertMessage";
 
 //Definir tipos para resposta da API
 interface User {
@@ -90,7 +91,9 @@ export default function UserDetails() {
           </div>
         </div>
         {/* Exibe mensagem de erro */}
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        <AlertMessage type='error' message={error} />
+        {/* Exibe mensagem de sucesso */}
+        <AlertMessage type='success' message={success} />
 
         {user && !error && (
           <div className="bg-white shadow-md rounded-lg p-6 ">

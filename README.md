@@ -33,6 +33,11 @@ Para estilizar com heroicons tailwind
 npm install @heroicons/react
 ```
 
+Para estilizar alertas com sweetAlert
+```
+npm install sweetalert2
+```
+
 ## Pacote para conectar a aplicação à API
 ```
 npm install axios

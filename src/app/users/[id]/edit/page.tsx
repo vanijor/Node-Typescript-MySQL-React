@@ -11,7 +11,8 @@ import Link from "next/link";
 //Importar o componente Menu
 import Menu from "@/components/Menu";
 //useParms - acessar os parametros da URL de uma pagina que usa rotas dinamicas
-import  { useParams } from "next/navigation";
+import { useParams } from "next/navigation";
+import AlertMessage from "@/components/AlertMessage";
 
 
 export default function editUser() {
@@ -30,7 +31,7 @@ export default function editUser() {
     try {
       //Fazendo requisição para a API para buscar o usuário pelo ID
       const response = await instance.get(`/users/${id}`);
-      
+
       //Preencher os campos com os dados existentes
       setName(response.data.user.name)
       setEmail(response.data.user.email)
@@ -85,14 +86,14 @@ export default function editUser() {
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">Editar Usuário</h1>
           <div>
-          <Link href="/users/list" className="bg-cyan-500 text-white px-4 py-2 rounded-md hover:bg-cyan-600">Listar</Link>
-          <Link href={`/users/${id}`} className="bg-blue-500 text-white px-4 m-1 py-2 rounded-md hover:bg-blue-600">Visualizar</Link>
+            <Link href="/users/list" className="bg-cyan-500 text-white px-4 py-2 rounded-md hover:bg-cyan-600">Listar</Link>
+            <Link href={`/users/${id}`} className="bg-blue-500 text-white px-4 m-1 py-2 rounded-md hover:bg-blue-600">Visualizar</Link>
           </div>
         </div>
         {/* Exibe mensagem de erro */}
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        <AlertMessage type='error' message={error} />
         {/* Exibe mensagem de sucesso */}
-        {success && <p className="text-green-500 mt-4">{success}</p>}
+        <AlertMessage type='success' message={success} />
 
         <form onSubmit={handleSubmit} className="mt-6 bg-white shadow-md rounded-lg p-6">
           <div className="mb-4">

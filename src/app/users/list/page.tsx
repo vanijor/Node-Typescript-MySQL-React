@@ -12,6 +12,7 @@ import Link from "next/link";
 import Menu from "@/components/Menu";
 //Importar o componente para apagar o registro
 import DeleteButton from "@/components/DeleteButton";
+import AlertMessage from "@/components/AlertMessage";
 
 interface User {
   id: number,
@@ -70,9 +71,9 @@ export default function Users() {
           <Link href="/users/create" className="bg-cyan-500 text-white px-4 py-2 rounded-md hover:bg-cyan-600 shadow-md">Cadastrar</Link>
         </div>
         {/* Exibe mensagem de erro */}
-        {error && <p className="text-red-500 mt-4">{error}</p>}
+        <AlertMessage type='error' message={error} />
         {/* Exibe mensagem de sucesso */}
-        {success && <p className="text-green-500 mt-4">{success}</p>}
+        <AlertMessage type='success' message={success} />
         <div className="mt-6 bg-white shadow-md rounded-lg p-6">
           <table className="w-full border-collapse">
             <thead>
@@ -91,9 +92,9 @@ export default function Users() {
                   <td className="border p-3">{user.email}</td>
                   <td className="border p-3 grid grid-cols-3">
                     <Link href={`/users/${user.id}`} className="w-22 bg-blue-500 text-center text-white px-2 py-2 rounded-md hover:bg-blue-600">Visualizar</Link>
-                    <Link href={`/users/${user.id}/edit`}className="w-22 bg-yellow-500 text-center text-white px-2 py-2 rounded-md hover:bg-yellow-600">
-                     Editar</Link>
-                    <DeleteButton 
+                    <Link href={`/users/${user.id}/edit`} className="w-22 bg-yellow-500 text-center text-white px-2 py-2 rounded-md hover:bg-yellow-600">
+                      Editar</Link>
+                    <DeleteButton
                       id={String(user.id)}
                       route='users'
                       onSuccess={handleSuccess}

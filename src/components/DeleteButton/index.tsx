@@ -1,3 +1,10 @@
+//A diretiva 'use client' é usada para indicar que este componente é executado no cliente (browser)
+//Essa diretiva é específica par Next.js 13+ quando se utiliza a renderização no lado do cliente
+'use client'
+
+//SweetAlert2 para apresentar o alerta de confirmação
+import Swal from 'sweetalert2'
+
 //Importa a instância do axios configurada para fazer requisições para a API
 import instance from "@/services/api";
 
@@ -9,17 +16,28 @@ interface DeleteButtonProps {
   setSuccess: (message: string | null) => void
 }
 
-const DeleteButton = ({ id, route, onSuccess, setError, setSuccess}: DeleteButtonProps) => {
-  
+const DeleteButton = ({ id, route, onSuccess, setError, setSuccess }: DeleteButtonProps) => {
+
 
   const handleDelete = async () => {
     //Exibir alerta de confirmação
-    const confirmDelete = window.confirm('Tem certeza que deseja excluir este registro?')
-    if (!confirmDelete) return
+    const confirmDelete = await Swal.fire({
+      title: "Tem certeza?",
+      text: "Esta ação não pode ser desfeita!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sim, Excluir!",
+      cancelButtonText: "Cancelar",
+    })
+    
+    if (!confirmDelete.isConfirmed) return
     //Limpa o erro anterior
     setError(null)
     //Limpar o sucesso anterior
     setSuccess(null)
+
 
     try {
       //Fazer uma requisição a API
